@@ -12,10 +12,7 @@ import Divider from 'material-ui/Divider';
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import List, { ListItem } from 'material-ui/List';
-import AddNewLogin from './AddLogin';
-import ViewAll from './ViewAll';
 import ViewAllPatients from './ViewAllPatients';
-import AddPateintInStudy from './AddPatientsInStudy';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 
@@ -109,36 +106,16 @@ class ResponsiveDrawer extends React.Component {
     this.setState({ mobileOpen: !this.state.mobileOpen });
   };
 
- AddNewLoginHandleClick = () => {
-
-    this.setState({
-        OnDisplay:<AddNewLogin email={this.props.email} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
-    })
-    console.log("Add item on click");
-}
+ 
 
 
 
   
- ViewAllHandleClick = () => {
-
-    this.setState({
-        OnDisplay:<ViewAll email={this.props.email} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
-    })
-    console.log("View All item Click")
-  }
  
   ViewAllPatientsHandleClick = () => {
 
     this.setState({
         OnDisplay:<ViewAllPatients email={this.props.email} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
-    })
-    console.log("View All item Click")
-  }
-  AddPatientsHandleClick = () => {
-
-    this.setState({
-        OnDisplay:<AddPatientsInStudy email={this.props.email} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
     console.log("View All item Click")
   }
@@ -172,13 +149,12 @@ class ResponsiveDrawer extends React.Component {
         <List>
         <Typography variant="title" color="inherit" >
         <MuiThemeProvider theme={theme2}>
-           <ListItem><Button onClick={this.AddNewLoginHandleClick.bind(this)} >Add New Study</Button></ListItem>
-           <Divider />
-            <ListItem><Button onClick={this.ViewAllHandleClick.bind(this)}>All Studies</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.AddPatientsHandleClick.bind(this)}>Add Patients</Button></ListItem>
-            <Divider/>
+
             <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>All Patients</Button></ListItem>
+            <Divider/>
+            <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>All Readings</Button></ListItem>
+            <Divider/>
+            <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>Detailed Monitoring</Button></ListItem>
             <Divider/>
             <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
             <Divider />
@@ -202,7 +178,7 @@ class ResponsiveDrawer extends React.Component {
                 <MenuIcon/>
               </IconButton>
               <Typography variant="title" color="inherit" noWrap>
-                NOX : Clinical Research Made Simple
+                IoT enabled Abnormal Heartbeat Detection and Alram System
               </Typography>
             </Toolbar>
           </AppBar>
