@@ -16,7 +16,6 @@ import createBrowserHistory from 'history/createBrowserHistory';
 import { 
     Router
     }   from 'react-router-dom';
-import FullTable from './FullTable';
 import Welcome from './Welcome';
 import Dialog, {
   DialogActions,
@@ -24,6 +23,9 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
+
+
+import ViewAllReadings from './ViewAllReadings';
 
 const customHistory = createBrowserHistory();
 const drawerWidth = 240;
@@ -106,9 +108,9 @@ class ResponsiveDrawer extends React.Component {
   FullTableHandleClick = () => {
 
     this.setState({
-        OnDisplay:<FullTable email={this.props.email} token={this.state.t}/>
+        OnDisplay:<ViewAllReadings email={this.props.email} token={this.state.t}/>
     })
-    console.log("ADd item on click")
+
   }
 
   handleClickDialogOpen = () => {
@@ -139,7 +141,7 @@ class ResponsiveDrawer extends React.Component {
         <List>
         <Typography variant="title" color="inherit" >
         <MuiThemeProvider theme={theme2}>
-           <ListItem><Button onClick={this.FullTableHandleClick.bind(this)} >My Surveys</Button></ListItem>
+           <ListItem><Button onClick={this.FullTableHandleClick.bind(this)} >My Readings</Button></ListItem>
            <Divider />
             <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
             <Divider />
@@ -163,7 +165,7 @@ class ResponsiveDrawer extends React.Component {
                 <MenuIcon/>
               </IconButton>
               <Typography variant="title" color="inherit" noWrap>
-                NOX : Clinical Search Made Simple
+                IoT enabled Abnormal Heartbeat Detection and Alram System
               </Typography>
             </Toolbar>
           </AppBar>

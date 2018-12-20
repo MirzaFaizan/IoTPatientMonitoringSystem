@@ -13,6 +13,7 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import List, { ListItem } from 'material-ui/List';
 import ViewAllPatients from './ViewAllPatients';
+import ViewAllReadings from './ViewAllReadings';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 
@@ -26,7 +27,6 @@ import Dialog, {
   DialogContentText,
   DialogTitle,
 } from 'material-ui/Dialog';
-import AddPatientsInStudy from './AddPatientsInStudy';
 
 
 const customHistory = createBrowserHistory();
@@ -117,7 +117,13 @@ class ResponsiveDrawer extends React.Component {
     this.setState({
         OnDisplay:<ViewAllPatients email={this.props.email} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
-    console.log("View All item Click")
+  }
+
+  ViewAllReadingsHandleClick = () => {
+
+    this.setState({
+        OnDisplay:<ViewAllReadings email={this.props.email} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
+    })
   }
 
 
@@ -152,7 +158,7 @@ class ResponsiveDrawer extends React.Component {
 
             <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>All Patients</Button></ListItem>
             <Divider/>
-            <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>All Readings</Button></ListItem>
+            <ListItem><Button onClick={this.ViewAllReadingsHandleClick.bind(this)}>All Readings</Button></ListItem>
             <Divider/>
             <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>Detailed Monitoring</Button></ListItem>
             <Divider/>
