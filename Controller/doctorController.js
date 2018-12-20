@@ -13,10 +13,8 @@ var db = mongoose.connection;
 //Bind connection to error event (to get notification of connection errors)
 (db.on('error', console.error.bind(console, 'MongoDB connection error:')));
 
-var UserInstance = require('../models/user');
-var StudyInstance = require('../models/study');
-var SurveyInstance = require('../models/surveyQuestions');
-var TokenInstance = require('../models/surveyTokens');
+const UserInstance = require('../models/user');
+const ReadingsInstance = require('../models/readings');
 //Function To Login
 
 exports.loginandGetToken = function(req, res)
@@ -59,88 +57,23 @@ else
         });
 };
 
-//Function to Create new Article
-exports.CreateNewStudy= function(req, res)
+
+
+exports.ViewAllReadings= function(req, res)
  {
-    var studyInstance = new StudyInstance({
-        name : req.body.title,
-        date : req.body.date,
-        patientsEnrolled : req.body.patients,
-        inclusionCriteria : req.body.ic,
-        exclusionCriteria : req.body.ec,
-        treatmentProtocol : req.body.tp,
-        studyInfo : req.body.info,
-        studyBy : req.body.studyBy
-    });
-        
-        //save new article
-        studyInstance.save(function (err) {
-        if (err)
-        return res.json(err);
-        else
-          return res.json('Added successfully');
-    });
- }
- //Delete A Article
- exports.DeleteArticle= function(req, res)
- {
-    article_instance.deleteOne(  
-        
-        // query
-        {item_id:req.body.id},
+        ReadingsInstance.find({email:req.body.email})
     
-        //{Emp_name: true,Emp_cnic:true,Emp_type:true},
-    
-        // callback function
-        (err, article) => {
-            if (err) return res.status(200).send(err)
-            if(article==null)
-            return res.status(200).json(message='No Article With this id');
+        .then(article => {
+            if(article==null){ res.json({message:'No Readings Found'})}
             else
-            return res.status(200).json('Article deleted Successfully');
-        }
-    );
- }
- //Function to Fetch all Articles
-
-
- exports.FetchAllStudies= function(req,res){
-    StudyInstance.find()
-
-    .then(article => {
-        if(article==null){ res.json({message:'No Article Found'})}
-        else
-        return res.json(article);
-    }).catch(err => {
-        return res.status(500).send({
-            message: err.message || "Some error occurred while retrieving all Articles."
+            return res.json(article);
+        }).catch(err => {
+            return res.status(500).send({
+                message: err.message || "Some error occurred while retrieving all Readings."
+            });
         });
-    });
-};
-
-
-exports.CreatePassCode = function(req,res){
-
-    tokenInstance = new TokenInstance({
-        firstName: req.body.firstName,
-        lastName: req.body.lastName,
-        email: req.body.email,
-        token:req.body.passcode,
-        studyBy: req.body.studyBy,
-        studyName:req.body.studyName,
-    });
-
-    tokenInstance.save(function (err) {
-        if (err)
-        return res.json(err);
-        else
-          return res.json('Added successfully');
-    });
-
-
-}
-
-
+    
+ }
 
 exports.FetchAllPatients= function(req,res){
     UserInstance.find({
@@ -148,25 +81,12 @@ exports.FetchAllPatients= function(req,res){
     })
 
     .then(article => {
-        if(article==null){ res.json({message:'No Article Found'})}
+        if(article==null){ res.json({message:'No Patient Found'})}
         else
         return res.json(article);
     }).catch(err => {
         return res.status(500).send({
-            message: err.message || "Some error occurred while retrieving all Articles."
+            message: err.message || "Some error occurred while retrieving all Patients."
         });
     });
 };
-
-
-//update study
-exports.UpdateStudy = function (req, res) {
-    StudyInstance.findOneAndUpdate({name: req.body.name}, {$set:{patientsAdded:req.body.patients}}, {new: true}, (err, doc) => {
-        if (err) return res.status(200).send(err)
-        if(doc==null)
-        return res.status(200).json(message='No study With this id')
-        else
-        return res.status(200).json(doc)
-    });
-}
-

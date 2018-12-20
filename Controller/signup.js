@@ -1,7 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const User = require('../models/user');
-const TokenInstance = require('../models/surveyTokens');
+const Readings = require('../models/readings');
 
 exports.CreatenewUser = function (req, res) {
 
@@ -27,39 +27,3 @@ exports.CreatenewUser = function (req, res) {
 
 
 
-exports.ValidateToken = function(req,res){
-  
-    TokenInstance.findOne(  
-        // query
-        { token:req.body.token}, (err, Doc) => {
-                if (err) return res.status(200).send(err)
-                if(Doc==null)
-                {
-                return res.status(200).json(message='Invalid Token')
-                }
-                else if(Doc.taken===true){
-                    return res.status(200).json(message='Expired')
-                }
-                else
-                {
-                    return res.json({
-                    success: true,
-                    message: 'valid',
-                    fname : Doc.firstName,
-                    lname : Doc.lastName,
-                    studyBy :Doc.studyBy,
-                    studyName : Doc.studyName
-                });     
-        }
-        });
-}
-
-exports.ExpireToken = function(req,res){
-    TokenInstance.findOneAndUpdate({token: req.body.token}, {$set:{taken:true}}, {new: true}, (err, doc) => {
-        if (err) return res.status(200).send(err)
-        if(doc==null)
-        return res.status(200).json(message='No Token With this id')
-        else
-        return res.status(200).json(doc)
-    });
-}
