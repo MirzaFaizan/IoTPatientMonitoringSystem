@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import WarehouseDrawer from './warehouse/Drawer';
-import HeadOfficeDrawer from './headoffice/Drawer';
-import Login  from './warehouse/Login';
+import PatientDrawer from './patient/Drawer';
+import DoctorDrawer from './doctor/Drawer';
+import Login  from './patient/Login';
 import Button from 'material-ui/Button';
 import Dialog, {
   DialogActions,
@@ -17,7 +17,7 @@ class App extends Component {
 
     if(this.state.IsLoggedInWarehouse===true){
       this.setState({
-        onDisplay:<WarehouseDrawer/>
+        onDisplay:<PatientDrawer/>
       })
     }
     else if(this.state.IsLoggedInHeadoffice===true){
@@ -70,7 +70,7 @@ class App extends Component {
     //now send token to the required component
     this.setState({
       IsLoggedInWarehouse:true,
-      onDisplay:<WarehouseDrawer email ={email} token={token} logoutScreen={this.logoutFunction}/>
+      onDisplay:<PatientDrawer email ={email} token={token} logoutScreen={this.logoutFunction}/>
     })
   }
 
@@ -79,7 +79,7 @@ class App extends Component {
     console.log(token)
     this.setState({
       IsLoggedInHeadoffice:true,
-      onDisplay:<HeadOfficeDrawer token={token} email ={email}  logoutScreen={this.logoutFunction}/>
+      onDisplay:<DoctorDrawer token={token} email ={email}  logoutScreen={this.logoutFunction}/>
     })
   }
 
