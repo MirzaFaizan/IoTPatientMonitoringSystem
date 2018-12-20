@@ -61,7 +61,7 @@ else
 
 exports.ViewAllReadings= function(req, res)
  {
-        ReadingsInstance.find({email:req.body.email})
+        ReadingsInstance.find()
     
         .then(article => {
             if(article==null){ res.json({message:'No Readings Found'})}
