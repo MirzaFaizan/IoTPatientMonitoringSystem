@@ -7,7 +7,7 @@ var varifyToken= require('../TokenVerify');
 router.use(varifyToken);
 /* GET users listing. */
 
-router.post('/viewReadings',Controller.FetchAllStudies);
+router.post('/viewReadings',Controller.ViewAllReadings);
 router.post('/viewAllPatients',Controller.FetchAllPatients);
 
 module.exports = router;
