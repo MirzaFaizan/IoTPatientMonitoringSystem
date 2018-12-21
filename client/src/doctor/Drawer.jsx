@@ -14,6 +14,7 @@ import Button from 'material-ui/Button';
 import List, { ListItem } from 'material-ui/List';
 import ViewAllPatients from './ViewAllPatients';
 import ViewAllReadings from './ViewAllReadings';
+import ViewDetailed from './ViewDetailed';
 
 import createBrowserHistory from 'history/createBrowserHistory';
 
@@ -125,6 +126,12 @@ class ResponsiveDrawer extends React.Component {
         OnDisplay:<ViewAllReadings email={this.props.email} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
     })
   }
+  ViewDetailedHandleClick = () => {
+
+    this.setState({
+        OnDisplay:<ViewDetailed email={this.props.email} token={this.state.t} handleopen={this.handleClickDialogOpen} handleError={this.handleClickerrorDialogOpen}/>
+    })
+  }
 
 
   handleClickDialogOpen = () => {
@@ -160,7 +167,7 @@ class ResponsiveDrawer extends React.Component {
             <Divider/>
             <ListItem><Button onClick={this.ViewAllReadingsHandleClick.bind(this)}>All Readings</Button></ListItem>
             <Divider/>
-            <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>Detailed Monitoring</Button></ListItem>
+            <ListItem><Button onClick={this.ViewDetailedHandleClick.bind(this)}>Detailed Monitoring</Button></ListItem>
             <Divider/>
             <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
             <Divider />
