@@ -1,8 +1,9 @@
 import React from 'react';
-import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Typography from 'material-ui/Typography';
-
+import Grid from 'material-ui/Grid';
+import Icon from 'material-ui/Icon/Icon';
+import Divider from 'material-ui/Divider/Divider';
 
 class ViewDetailed extends React.Component {
 
@@ -32,8 +33,10 @@ class ViewDetailed extends React.Component {
       if(res){
        console.log(res);
        this.setState({
+           loading:false,
          data:res
-       })
+       });
+       this.calculateAverageHeartbeat();
         console.log("After function");
         console.log(this.state.t);
       };
@@ -43,14 +46,27 @@ class ViewDetailed extends React.Component {
   };
 
 
+  calculateAverageHeartbeat=()=>{
+      if(this.state.data){
+          var allData = this.state.data;
+          //calculating AVG
+
+          var avg = (parseInt(allData[allData.length-1].reading)+ parseInt(allData[allData.length-2].reading)+parseInt(allData[allData.length-3].reading))/3;
+          this.setState({
+              average:Math.floor(avg)
+          })
+      }
+  }
 
 
   constructor(props){
     super(props)
     console.log(this.props.email);
     this.state={
-      data:{},
-      t:this.props.token,
+        loading:true,
+        data:{},
+        t:this.props.token,
+        average:0,
     }
   };
 
@@ -58,10 +74,36 @@ class ViewDetailed extends React.Component {
     const { classes } = this.props;
     return (
       <div>
-        <Typography variant="display2"> Patient Detailed Monitoring</Typography>
-        <Paper >
-          hi
-        </Paper>
+        <Typography variant="display2" style={{marginBottom:'50px'}}> Patient Detailed Monitoring</Typography>
+        <Grid
+            container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing={16}>
+                <Paper style={{padding:'50px'}}>
+                    {/* Patient Details  */}
+                    <Typography > Patient E-Mail </Typography>
+                    <Icon fontSize='large' >alternate_email</Icon>
+                    <Typography variant="display2">{this.state.loading?'Loading...':this.state.data[this.state.data.length-1].email}</Typography>
+                    {/* Patient Heart Beat */}
+                    <Divider/>
+                    <Typography > Current HeartBeat </Typography>
+                    <Icon fontSize='large' >favorite_border</Icon>
+                    <Typography variant="display2">{this.state.loading?'Loading...':this.state.data[this.state.data.length-1].reading}</Typography>
+                    {/* Time */}
+                    <Divider/>
+                    <Typography > Last Checked </Typography>
+                    <Icon fontSize='large' >access_time</Icon>
+                    <Typography variant="display2">{this.state.loading?'Loading...':this.state.data[this.state.data.length-1].dateTime}</Typography>
+                    {/* Average HeartBeat */}
+                    <Divider/>
+                    <Typography > Average Heart Beat </Typography>
+                    <Icon fontSize='large' >access_time</Icon>
+                    <Typography variant="display2">{this.state.loading?'Loading...':this.state.average}</Typography>
+                </Paper>
+        </Grid>
+        
       </div>
     );
   }
