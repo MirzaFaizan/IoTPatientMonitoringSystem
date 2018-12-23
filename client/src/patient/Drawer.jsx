@@ -139,14 +139,14 @@ class ResponsiveDrawer extends React.Component {
         <div className={classes.toolbar}/>
         <Router history={customHistory}>
         <List>
-        <Typography variant="title" color="inherit" >
+        {/* <Typography variant="title" color="inherit" >
         <MuiThemeProvider theme={theme2}>
            <ListItem><Button onClick={this.FullTableHandleClick.bind(this)} >My Readings</Button></ListItem>
            <Divider />
             <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
             <Divider />
             </MuiThemeProvider>
-            </Typography>
+            </Typography> */}
         </List>
         </Router>
       </div>
@@ -165,7 +165,7 @@ class ResponsiveDrawer extends React.Component {
                 <MenuIcon/>
               </IconButton>
               <Typography variant="title" color="inherit" noWrap>
-                IoT enabled Abnormal Heartbeat Detection and Alram System
+              Abnormal Heart Rate Detection and Alert System Using IoT Technology
               </Typography>
             </Toolbar>
           </AppBar>

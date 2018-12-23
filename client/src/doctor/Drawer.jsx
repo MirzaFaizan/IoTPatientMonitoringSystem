@@ -160,19 +160,19 @@ class ResponsiveDrawer extends React.Component {
         <div className={classes.toolbar}/>
         <Router history={customHistory}>
         <List>
-        <Typography variant="title" color="inherit" >
+        {/* <Typography variant="title" color="inherit" >
         <MuiThemeProvider theme={theme2}>
-
-            <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>All Patients</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewAllReadingsHandleClick.bind(this)}>All Readings</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.ViewDetailedHandleClick.bind(this)}>Detailed Monitoring</Button></ListItem>
-            <Divider/>
-            <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
-            <Divider />
+ 
+             <ListItem><Button onClick={this.ViewAllPatientsHandleClick.bind(this)}>All Patients</Button></ListItem>
+             <Divider/>
+             <ListItem><Button onClick={this.ViewAllReadingsHandleClick.bind(this)}>All Readings</Button></ListItem>
+             <Divider/>
+             <ListItem><Button onClick={this.ViewDetailedHandleClick.bind(this)}>Detailed Monitoring</Button></ListItem>
+             <Divider/>
+             <ListItem><Button onClick={this.props.logoutScreen}>Logout</Button></ListItem>
+             <Divider />
             </MuiThemeProvider>
-            </Typography>
+            </Typography> */}
         </List>
         </Router>
       </div>
@@ -191,7 +191,7 @@ class ResponsiveDrawer extends React.Component {
                 <MenuIcon/>
               </IconButton>
               <Typography variant="title" color="inherit" noWrap>
-                IoT enabled Abnormal Heartbeat Detection and Alram System
+              Abnormal Heart Rate Detection and Alert System Using IoT Technology
               </Typography>
             </Toolbar>
           </AppBar>
