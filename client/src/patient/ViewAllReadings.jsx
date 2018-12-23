@@ -36,6 +36,13 @@ const styles = theme => ({
 class CustomizedTable extends React.Component {
 
   componentDidMount(){
+    this.loadData()
+    setInterval(this.loadData, 10000);
+  };
+
+
+  loadData=()=>{
+
     var details = {
       'token':this.state.t
   };
@@ -69,8 +76,7 @@ class CustomizedTable extends React.Component {
     }
     );
 
-  };
-
+  }
 
 
 

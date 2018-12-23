@@ -4,6 +4,7 @@ import Typography from 'material-ui/Typography';
 import Grid from 'material-ui/Grid';
 import Icon from 'material-ui/Icon/Icon';
 import Divider from 'material-ui/Divider/Divider';
+import Heart from './as.jpeg';
 
 class ViewDetailed extends React.Component {
 
@@ -107,7 +108,7 @@ class ViewDetailed extends React.Component {
                     <Typography variant="display2">{this.state.loading?'Loading...':this.state.average}</Typography>
                 </Paper>
         </Grid>
-        
+        <img src={Heart} alt="Image" />
       </div>
     );
   }
