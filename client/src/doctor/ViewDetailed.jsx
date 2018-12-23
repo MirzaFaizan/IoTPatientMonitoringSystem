@@ -8,42 +8,46 @@ import Divider from 'material-ui/Divider/Divider';
 class ViewDetailed extends React.Component {
 
   componentDidMount(){
-    var details = {
-      'token':this.state.t
-  };
-    var formBody = [];
-    for (var property in details) {
-      var encodedKey = encodeURIComponent(property);
-      var encodedValue = encodeURIComponent(details[property]);
-      formBody.push(encodedKey + "=" + encodedValue);
-    }
-    formBody = formBody.join("&");
-    
-    fetch('/doctor/viewReadings', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
-      },
-      body: formBody
-    })
-    .then(res=>res.json())
-    .then(res=>{
-      console.log("we are in this function");
-      console.log(this.state.t);
-      if(res){
-       console.log(res);
-       this.setState({
-           loading:false,
-         data:res
-       });
-       this.calculateAverageHeartbeat();
-        console.log("After function");
-        console.log(this.state.t);
-      };
-    }
-    );
+    this.loadData()
+    setInterval(this.loadData, 10000);
+    };
 
-  };
+    loadData=()=>{
+      var details = {
+        'token':this.state.t
+    };
+      var formBody = [];
+      for (var property in details) {
+        var encodedKey = encodeURIComponent(property);
+        var encodedValue = encodeURIComponent(details[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+      }
+      formBody = formBody.join("&");
+      
+      fetch('/doctor/viewReadings', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8' 
+        },
+        body: formBody
+      })
+      .then(res=>res.json())
+      .then(res=>{
+        console.log("we are in this function");
+        console.log(this.state.t);
+        if(res){
+         console.log(res);
+         this.setState({
+             loading:false,
+           data:res
+         });
+         this.calculateAverageHeartbeat();
+          console.log("After function");
+          console.log(this.state.t);
+        };
+      }
+      );
+    }
 
 
   calculateAverageHeartbeat=()=>{
