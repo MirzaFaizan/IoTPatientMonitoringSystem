@@ -22,6 +22,7 @@ import FormControlLabel from 'material-ui/Form/FormControlLabel';
 import FormControl from 'material-ui/Form/FormControl';
 import FormLabel from 'material-ui/Form/FormLabel';
 import Divider from 'material-ui/Divider';
+import BG from './okay.jpeg';
 
 
 const styles = theme => ({
@@ -277,16 +278,19 @@ class TextFields extends React.Component {
 
 
     return (
-      <div>
+      <div style={{backgroundImage: "url(" + BG + ")",backgroundPosition: 'center',
+      backgroundSize: 'cover',
+      backgroundRepeat: 'no-repeat',
+      height:'100vh'}}>
            <AppBar className={classes.appBar}>
       <Toolbar>
         <Typography variant="title" color="inherit" noWrap>
-          IoT enabled Abnormal HeartBeat detection
+        Abnormal Heart Rate Detection and Alert System Using IoT Technology
         </Typography>
       </Toolbar>
     </AppBar>
     <Typography variant="display1" color="inherit" align="center">
-         <h3> IoT enabled Abnormal Heartbeat Detection and Alram System </h3>
+         <h3> Abnormal Heart Rate Detection and Alert System Using IoT Technology </h3>
          
         </Typography>
     <Card className={classes.card}>
@@ -350,7 +354,7 @@ class TextFields extends React.Component {
          </Grid>
 
         <Grid item xs={6} justify="center">
-          <Button variant="raised" color="primary" className={classes.button} onClick={this.handleClickOpen.bind(this)} disabled={isDisabled}>
+          <Button variant="raised" color="primary" className={classes.button} onClick={this.handleClickOpen.bind(this)}>
             Sign-up
           </Button>
         </Grid>
